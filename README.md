@@ -30,3 +30,14 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## Deploy to GitHub Pages
+
+This repository is configured to deploy automatically to GitHub Pages from the `main` branch using `.github/workflows/deploy.yml`.
+
+### One-time GitHub setup
+
+1. Open **Settings → Pages** in this repository.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+
+After that, every push to `main` triggers a new deployment.
