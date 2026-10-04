@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { ExternalLink, Github, X } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { Code2, ExternalLink, X } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
 import { projectFilters, projects, type ProjectFilter } from '../data/portfolio'
 import type { Project } from '../types'
 import { Section } from './Section'
@@ -15,6 +15,16 @@ export function ProjectsSection() {
     }
     return projects.filter((project) => project.category === filter)
   }, [filter])
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setActiveProject(null)
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
 
   return (
     <Section id="projects" title="Projects" subtitle="Selected work with real-world features and scalable architecture.">
@@ -66,7 +76,7 @@ export function ProjectsSection() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-md border border-white/20 px-3 py-1.5 text-xs text-slate-100 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
               >
-                <Github size={14} /> GitHub
+                <Code2 size={14} /> GitHub
               </a>
               <a
                 href={project.demoUrl}
